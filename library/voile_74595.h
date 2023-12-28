@@ -118,10 +118,10 @@ typedef const struct {
     // Operate the 74595
     voile_const_74595_Operate_t *Operate;
 
-    // _SRCLR pin
+    // (option) _SRCLR pin
     voile_const_ioPin_t *_SRCLR;
 
-    // _OE pin
+    // (option) _OE pin
     voile_const_ioPin_t *_OE;
     
     // SRCLK pin
@@ -133,8 +133,11 @@ typedef const struct {
     // _RCLK pin
     voile_const_ioPin_t *RCLK;
 
-    // QH' pin
+    // (reserved) QH' pin
     voile_const_ioPin_t *QH_;
+
+    // (reserved) variable for save state
+    uint8_t *state;
 
 } voile_const_internal_74595_t;
 
