@@ -23,14 +23,15 @@ voile_status_t voile_74595_Operate_Init(voile_const_internal_74595_t* this) {
     if (this->QH_ != NULL) {
         this->QH_->Operate->Init(this->QH_, IOmodeInput);
     }
+    voile_74595_Operate_Reset(this);
     return success;
 } 
 
 voile_status_t voile_74595_Operate_ShiftBytes(voile_const_internal_74595_t* this, uint8_t *date, uint8_t lenth) {
     uint8_t delay = 20;
     uint8_t byte;
-    for(; lenth > 0; lenth--, date++) {
-        byte = *date;
+    for(; lenth > 0; lenth--) {
+        byte = date[lenth-1];
         voile_74595_Operate_ShiftBit(this, !!(byte & 0x80));
         byte <<= 1;
         for (delay = 20; delay > 0; delay--) {

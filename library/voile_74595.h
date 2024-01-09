@@ -190,7 +190,7 @@ static inline voile_status_t voile_74595_Operate_Reset(voile_const_internal_7459
         // I don't know why, but my 74HC595 need a rise at RCLK to reset shift resister. 
         voile_74595_Operate_ShiftBit(this, 0);
 
-        this->_SRCLR->Operate->Write(this->_SRCLR, 1);
+        this->_SRCLR->Operate->Write(this->_SRCLR, 0);
 
         return success;
     }
