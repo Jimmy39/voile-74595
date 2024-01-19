@@ -16,19 +16,44 @@ voile_const_74595_Get_t voile_const_74595_Get = {
 };
 
 voile_status_t voile_74595_Operate_Init(voile_const_internal_74595_t* this) {
-    this->SER->Operate->Init(this->SER, IOmodePushPull, 0);
-    this->SRCLK->Operate->Init(this->SRCLK, IOmodePushPull, 1);
-    if (this->RCLK != this->SRCLK) {
-        this->RCLK->Operate->Init(this->RCLK, IOmodePushPull, 0);
+
+    // Defination cheak
+    if ((this->SER == NULL)||(this->SRCLK == NULL)||(this->RCLK == NULL)) {
+        return failure;
     }
-    if (this->_SRCLR != NULL) {
-        this->_SRCLR->Operate->Init(this->_SRCLR, IOmodePushPull, 0);
+
+    this->SER->Operate->SetMode(this->SER, IOmodePushPull);
+    this->SER->Operate->Write(this->SER, 0);
+    this->SRCLK->Operate->SetMode(this->SRCLK, IOmodePushPull);
+    this->SRCLK->Operate->Write(this->SRCLK, 1);
+    if (this->RCLK != this->SRCLK) {
+        this->RCLK->Operate->SetMode(this->RCLK, IOmodePushPull);
+        this->RCLK->Operate->Write(this->RCLK, 0);
     }
     if (this->_OE != NULL) {
-        this->_OE->Operate->Init(this->_OE, IOmodePushPull, 1);
+        this->_OE->Operate->SetMode(this->_OE, IOmodePushPull);
+        this->_OE->Operate->Write(this->_OE, 1);
+    }
+    if (this->_SRCLR != NULL) {
+        this->_SRCLR->Operate->SetMode(this->_SRCLR, IOmodePushPull);
+        this->_SRCLR->Operate->Write(this->_SRCLR, 0);
     }
     if (this->QH_ != NULL) {
-        this->QH_->Operate->Init(this->QH_, IOmodeInput);
+        this->QH_->Operate->SetMode(this->QH_, IOmodeInput);
+    }
+    this->RCLK->Operate->Init(this->RCLK);
+    this->SER->Operate->Init(this->SER);
+    if (this->RCLK != this->SRCLK) {
+        this->SRCLK->Operate->Init(this->SRCLK);
+    }
+    if (this->_OE != NULL) {
+        this->_OE->Operate->Init(this->_OE);
+    }
+    if (this->_SRCLR != NULL) {
+        this->_SRCLR->Operate->Init(this->_SRCLR);
+    }
+    if (this->QH_ != NULL) {
+        this->QH_->Operate->Init(this->QH_);
     }
     voile_74595_Operate_Reset(this);
     return success;

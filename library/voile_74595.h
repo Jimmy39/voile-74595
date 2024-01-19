@@ -4,10 +4,10 @@
 #include "voile_interface_iopin.h"
 #include "voile_common.h" 
 
-struct voile_const_74595_Operate_struct;
-typedef const struct voile_const_74595_Operate_struct voile_const_74595_Operate_t;
-struct voile_const_74595_Get_struct;
-typedef const struct voile_const_74595_Get_struct voile_const_74595_Get_t;
+struct voile_74595_Operate_struct;
+typedef const struct voile_74595_Operate_struct voile_const_74595_Operate_t;
+struct voile_74595_Get_struct;
+typedef const struct voile_74595_Get_struct voile_const_74595_Get_t;
 
 
 typedef const struct {
@@ -52,7 +52,7 @@ typedef const struct {
 
 } voile_const_internal_74595_t;
 
-struct voile_const_74595_Operate_struct{
+struct voile_74595_Operate_struct{
 
     /**
      * @brief Init the io for control 74595
@@ -176,7 +176,7 @@ struct voile_const_74595_Operate_struct{
 
 };
 
-struct voile_const_74595_Get_struct {
+struct voile_74595_Get_struct {
     
     /**
      * @brief Read QH' of 74595
